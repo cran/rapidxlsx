@@ -1,0 +1,2 @@
+useDynLib(rapidxlsx, .registration = TRUE)
+export(write_xlsx)

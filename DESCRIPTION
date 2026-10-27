@@ -1,0 +1,20 @@
+Package: rapidxlsx
+Type: Package
+Title: Fast Parallel Excel Spreadsheet Writer
+Version: 0.1.0
+Authors@R: person("Amin", "Fathullah", role = c("aut", "cre"), email = "amin_fathullah@yahoo.com")
+Author: Amin Fathullah [aut, cre]
+Maintainer: Amin Fathullah <amin_fathullah@yahoo.com>
+Description: Serializes tabular data frames to Microsoft Excel 'OpenXML' ('xlsx') workbooks using a multi-threaded Rust core with parallel Deflate compression and zero-copy columnar memory mapping.
+License: MIT + file LICENSE
+Encoding: UTF-8
+RoxygenNote: 7.3.2
+SystemRequirements: Cargo (Rust toolchain)
+URL: https://github.com/aminfathullah/rapidxlsx
+BugReports: https://github.com/aminfathullah/rapidxlsx/issues
+NeedsCompilation: yes
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+Packaged: 2026-10-16 09:29:39 UTC; maja
+Repository: CRAN
+Date/Publication: 2026-10-27 15:10:02 UTC

@@ -1,0 +1,30 @@
+CARGO = cargo
+TARGET_DIR = rust/target
+LIBDIR = $(TARGET_DIR)/release
+STATLIB = $(LIBDIR)/librapidxlsx_r.a
+
+PKG_LIBS = -L$(LIBDIR) -lrapidxlsx_r -lpthread -ldl
+
+all: $(SHLIB) cleanup
+
+$(SHLIB): $(STATLIB)
+
+$(STATLIB):
+	PATH="$(PATH):$(HOME)/.cargo/bin" rustc --version
+	@if [ -f rust/vendor.tar.xz ]; then \
+		tar -xf rust/vendor.tar.xz && \
+		mkdir -p .cargo && \
+		cp -f rust/vendor-config.toml .cargo/config.toml; \
+	fi
+	@mkdir -p $(TARGET_DIR)
+	PATH="$(PATH):$(HOME)/.cargo/bin" CARGO_HOME="$(CURDIR)/.cargo" CARGO_TARGET_DIR="$(TARGET_DIR)" $(CARGO) build -j 2 --offline --release --manifest-path=rust/Cargo.toml
+	@rm -rf .cargo vendor || true
+	@rm -rf $(LIBDIR)/build || true
+
+.PHONY: all clean cleanup $(STATLIB)
+
+cleanup: $(SHLIB)
+	@rm -rf $(STATLIB) $(TARGET_DIR) || true
+
+clean:
+	@rm -rf $(TARGET_DIR) .cargo vendor rust/.cargo || true

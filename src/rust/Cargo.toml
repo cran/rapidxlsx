@@ -1,0 +1,23 @@
+[workspace]
+
+[package]
+name = "rapidxlsx-r"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "rapidxlsx_r"
+crate-type = ["staticlib"]
+
+[dependencies]
+rayon = "1.10"
+libdeflater = "1.23"
+flate2 = "1.0"
+crc32fast = "1.4"
+itoa = "1.0"
+ryu = "1.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
